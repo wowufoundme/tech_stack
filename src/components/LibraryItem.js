@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
 import { ListItem } from 'react-native-elements';
-import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+  LayoutAnimation,
+  Platform,
+  UIManager,
+} from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import ItemDescription from './ItemDescription';
 
 const WEBPACK = require('../assets/webpack.png');
 
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
+
 class LibraryItem extends Component {
   constructor(props) {
     super(props);
+  }
+
+  UNSAFE_componentWillUpdate() {
+    LayoutAnimation.linear();
   }
 
   renderDescription() {
