@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListItem } from 'react-native-elements';
-import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -11,21 +11,32 @@ class LibraryItem extends Component {
     super(props);
   }
 
+  renderDescription() {
+    if (this.props.lib.id === this.props.selectedLibraryId) {
+      return <Text>{this.props.lib.description}</Text>;
+    }
+  }
+
   render() {
     return (
-      <ListItem
-        Component={TouchableWithoutFeedback}
-        title={this.props.lib.title}
-        subtitle={this.props.lib.description.slice(0, 50).concat('...')}
-        titleStyle={styles.listStyle}
-        subtitleStyle={styles.subtitleStyle}
-        bottomDivider
-        leftAvatar={{ source: WEBPACK }}
-        chevron={{ name: 'caret-down', type: 'font-awesome', color: '#FFFFFF' }}
-        pad={10}
-        onPress={() => this.props.selectLibraryAction(this.props.lib.id)}
-        containerStyle={styles.containerStyle}
-      />
+      <View>
+        <ListItem
+          Component={TouchableWithoutFeedback}
+          title={this.props.lib.title}
+          titleStyle={styles.listStyle}
+          bottomDivider
+          leftAvatar={{ source: WEBPACK }}
+          chevron={{
+            name: 'caret-down',
+            type: 'font-awesome',
+            color: '#FFFFFF',
+          }}
+          pad={10}
+          onPress={() => this.props.selectLibraryAction(this.props.lib.id)}
+          containerStyle={styles.containerStyle}
+        />
+        {this.renderDescription()}
+      </View>
     );
   }
 }
@@ -35,11 +46,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontFamily: 'Lato-Bold',
     fontSize: 14,
-  },
-  subtitleStyle: {
-    color: '#FFFFFF',
-    fontFamily: 'Lato-Regular',
-    fontSize: 12,
   },
   containerStyle: {
     backgroundColor: '#1E237E',
@@ -51,7 +57,11 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => {
+  return { selectedLibraryId: state.selectedLibraryId };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   actions,
 )(LibraryItem);
