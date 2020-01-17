@@ -14,7 +14,7 @@ const MainHeader = props => {
         containerStyle={styles.containerStyle}
         ViewComponent={LinearGradient}
         linearGradientProps={{
-          colors: ['#3700b3', '#6200ee'],
+          colors: ['#fff', '#fff'],
           start: { x: 0.5, y: 0 },
           end: { x: 0.5, y: 1 },
         }}
