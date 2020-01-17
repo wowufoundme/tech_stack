@@ -12,7 +12,7 @@ class LibraryList extends Component {
         data={this.props.libraries}
         renderItem={({ item }) => <LibraryItem lib={item} />}
         style={styles.listContainer}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.title}
       />
     );
   }
