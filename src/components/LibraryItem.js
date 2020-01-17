@@ -12,7 +12,7 @@ class LibraryItem extends Component {
   }
 
   renderDescription() {
-    if (this.props.lib.id === this.props.selectedLibraryId) {
+    if (this.props.expanded) {
       return <Text>{this.props.lib.description}</Text>;
     }
   }
@@ -57,8 +57,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
-  return { selectedLibraryId: state.selectedLibraryId };
+const mapStateToProps = (state, ownProps) => {
+  const expanded = ownProps.lib.id === state.selectedLibraryId;
+  return { expanded };
 };
 
 export default connect(
