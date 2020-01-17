@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 class ItemDescription extends Component {
   constructor(props) {
@@ -8,11 +8,27 @@ class ItemDescription extends Component {
 
   render() {
     return (
-      <View>
-        <Text>{this.props.item.description}</Text>
+      <View style={styles.descContainer}>
+        <Text style={styles.descText}>{this.props.item.description}</Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  descContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    backgroundColor: '#EEEEEE',
+  },
+  descText: {
+    color: '#1E237E',
+    lineHeight: 14 * 1.5,
+    fontSize: 14,
+    alignSelf: 'stretch',
+    fontFamily: 'Lato-Regular',
+    textAlign: 'center',
+  },
+});
 
 export default ItemDescription;
