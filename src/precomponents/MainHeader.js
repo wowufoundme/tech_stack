@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { Header } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -8,13 +8,22 @@ const MainHeader = props => {
     <View style={styles.viewStyle}>
       <Header
         placement="left"
-        leftComponent={{ icon: 'menu', color: '#fff', size: 20 }}
-        centerComponent={{ text: props.headerText, style: { color: '#fff' } }}
-        rightComponent={{ icon: 'home', color: '#fff', size: 20 }}
+        leftComponent={{
+          icon: 'menu',
+          color: '#1a237e',
+          size: 20,
+        }}
+        centerComponent={
+          <View>
+            <Text style={styles.headerTextStyle}>{props.headerText}</Text>
+          </View>
+        }
+        rightComponent={{ icon: 'home', color: '#1a237e', size: 20 }}
         containerStyle={styles.containerStyle}
+        centerContainerStyle={styles.centerContainerStyle}
         ViewComponent={LinearGradient}
         linearGradientProps={{
-          colors: ['#fff', '#fff'],
+          colors: ['#ffffff', '#ffffff'],
           start: { x: 0.5, y: 0 },
           end: { x: 0.5, y: 1 },
         }}
@@ -27,6 +36,10 @@ const MainHeader = props => {
 const styles = StyleSheet.create({
   containerStyle: {
     position: 'relative',
+  },
+  headerTextStyle: {
+    fontFamily: 'Lato-Bold',
+    fontSize: 20,
   },
   viewStyle: {
     flex: 1,

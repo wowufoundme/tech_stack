@@ -1,0 +1,2 @@
+const PRIMARY_COLOR = '#1A237E';
+global.PRIMARY_COLOR;

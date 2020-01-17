@@ -15,9 +15,10 @@ class LibraryItem extends Component {
         title={this.props.lib.title}
         subtitle={this.props.lib.description.slice(0, 50).concat('...')}
         titleStyle={styles.listStyle}
+        subtitleStyle={styles.subtitleStyle}
         bottomDivider
         leftAvatar={{ source: WEBPACK }}
-        chevron
+        chevron={{ color: '#1a237e' }}
         pad={10}
         onPress={() => []}
         containerStyle={styles.containerStyle}
@@ -29,6 +30,12 @@ class LibraryItem extends Component {
 const styles = StyleSheet.create({
   listStyle: {
     color: '#1a237e',
+    fontFamily: 'Lato-Regular',
+    fontSize: 14,
+  },
+  subtitleStyle: {
+    fontFamily: 'Lato-Regular',
+    fontSize: 12,
   },
   containerStyle: {
     borderWidth: 1,
