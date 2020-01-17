@@ -20,13 +20,32 @@ if (Platform.OS === 'android') {
   }
 }
 
+const animationObject = {
+  duration: 300,
+  create: {
+    duration: 300,
+    delay: 100,
+    type: LayoutAnimation.Types.easeIn,
+    property: LayoutAnimation.Properties.opacity,
+  },
+  update: {
+    type: LayoutAnimation.Types.easeInEaseOut,
+    property: LayoutAnimation.Properties.opacity,
+  },
+  delete: {
+    duration: 200,
+    type: LayoutAnimation.Types.easeInEaseOut,
+    property: LayoutAnimation.Properties.opacity,
+  },
+};
+
 class LibraryItem extends Component {
   constructor(props) {
     super(props);
   }
 
   UNSAFE_componentWillUpdate() {
-    LayoutAnimation.linear();
+    LayoutAnimation.configureNext(animationObject);
   }
 
   renderDescription() {
