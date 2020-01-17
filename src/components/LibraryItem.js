@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { ListItem } from 'react-native-elements';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 const WEBPACK = require('../assets/webpack.png');
 
@@ -12,6 +14,7 @@ class LibraryItem extends Component {
   render() {
     return (
       <ListItem
+        Component={TouchableWithoutFeedback}
         title={this.props.lib.title}
         subtitle={this.props.lib.description.slice(0, 50).concat('...')}
         titleStyle={styles.listStyle}
@@ -20,7 +23,7 @@ class LibraryItem extends Component {
         leftAvatar={{ source: WEBPACK }}
         chevron={{ name: 'caret-down', type: 'font-awesome', color: '#FFFFFF' }}
         pad={10}
-        onPress={() => []}
+        onPress={() => this.props.selectLibraryAction(this.props.lib.id)}
         containerStyle={styles.containerStyle}
       />
     );
@@ -48,4 +51,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LibraryItem;
+export default connect(
+  null,
+  actions,
+)(LibraryItem);
