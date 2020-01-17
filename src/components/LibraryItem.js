@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { ListItem } from 'react-native-elements';
-import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import ItemDescription from './ItemDescription';
 
 const WEBPACK = require('../assets/webpack.png');
 
@@ -13,7 +14,7 @@ class LibraryItem extends Component {
 
   renderDescription() {
     if (this.props.expanded) {
-      return <Text>{this.props.lib.description}</Text>;
+      return <ItemDescription item={this.props.lib} />;
     }
   }
 
